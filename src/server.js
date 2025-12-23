@@ -1,5 +1,3 @@
-// SATVertex/SATVertex-backend/src/server.js
-
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -18,6 +16,9 @@ app.use('/uploads', express.static('uploads'));
 // Routes
 const authRoutes = require('./routes/authRoutes');
 const { seedAdmin } = require('./controllers/authController');
+
+// ✅ NEW: content routes import
+const contentRoutes = require('./routes/contentRoutes');
 
 // MongoDB Connection
 mongoose
@@ -42,12 +43,15 @@ app.get('/health', (req, res) => {
 // Auth
 app.use('/api/auth', authRoutes);
 
-// Example protected route (test)
+// Protected test route
 const { protect, adminOnly } = require('./middleware/authMiddleware');
 
 app.get('/api/admin-only', protect, adminOnly, (req, res) => {
   res.json({ message: 'You are an admin!', user: req.user });
 });
+
+// ✅ Mount CMS content routes (About, Skills, Projects, etc.)
+app.use('/api', contentRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 SATVertex Backend running: http://localhost:${PORT}`);
