@@ -1,4 +1,12 @@
+# dependencies
 node_modules/
+
+# env / secrets
 .env
+
+# uploads from your CMS
 uploads/*
+
+# OS/editor junk
 .DS_Store
+Thumbs.db
