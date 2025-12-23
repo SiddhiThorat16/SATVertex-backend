@@ -20,6 +20,9 @@ const { seedAdmin } = require('./controllers/authController');
 // ✅ NEW: content routes import
 const contentRoutes = require('./routes/contentRoutes');
 
+// ✅ NEW: upload routes import
+const uploadRoutes = require('./routes/uploadRoutes');
+
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -50,8 +53,11 @@ app.get('/api/admin-only', protect, adminOnly, (req, res) => {
   res.json({ message: 'You are an admin!', user: req.user });
 });
 
-// ✅ Mount CMS content routes (About, Skills, Projects, etc.)
+// CMS content routes
 app.use('/api', contentRoutes);
+
+// ✅ Upload routes (Day 4)
+app.use('/api/upload', uploadRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 SATVertex Backend running: http://localhost:${PORT}`);
