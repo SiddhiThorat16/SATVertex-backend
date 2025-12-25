@@ -53,7 +53,7 @@ exports.seedAdmin = async () => {
     const admin = new User({
       name: 'SATVertex Admin',
       email: 'admin@satvertex.dev',
-      password: 'Admin@12345', // change after first login
+      password: 'Admin@12345',
       role: 'admin'
     });
 

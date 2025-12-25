@@ -1,4 +1,4 @@
-// SATVertex/SATVertex-backend/src/models/About.js
+// SATVertex/SATVertex-backend/src/models/Service.js
 
 const mongoose = require('mongoose');
 

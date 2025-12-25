@@ -1,3 +1,5 @@
+// SATVertex/SATVertex-backend/src/server.js
+
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -22,6 +24,9 @@ const contentRoutes = require('./routes/contentRoutes');
 
 // ✅ NEW: upload routes import
 const uploadRoutes = require('./routes/uploadRoutes');
+
+// ✅ NEW: contact routes import
+const contactRoutes = require('./routes/contact.routes');
 
 // MongoDB Connection
 mongoose
@@ -56,8 +61,11 @@ app.get('/api/admin-only', protect, adminOnly, (req, res) => {
 // CMS content routes
 app.use('/api', contentRoutes);
 
-// ✅ Upload routes (Day 4)
+// Upload routes
 app.use('/api/upload', uploadRoutes);
+
+// ✅ Contact routes
+app.use('/api/contact', contactRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 SATVertex Backend running: http://localhost:${PORT}`);
